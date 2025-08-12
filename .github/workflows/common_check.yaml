@@ -80,7 +80,6 @@ jobs:
             docker_platform: 'windows/amd64' # adjust based on your image build support
 
     runs-on: ${{ matrix.platform }}
-    defaults:
     env:
       RELEASE_VERSION: 0.1.21
     steps:
