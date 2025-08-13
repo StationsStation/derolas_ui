@@ -26,6 +26,9 @@ plugins:
       - file: "src-tauri/Cargo.toml"
         type: "text/toml"
         path: package.version
+      - file: "src-tauri/Cargo.lock"
+        type: "text/toml"
+        path: package.version
       - file: "src-tauri/tauri.conf.json"
         type: "application/json"
         path: version

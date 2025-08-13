@@ -3,8 +3,7 @@ let
 in
 pkgs.mkShell {
   packages = with pkgs; [
-    nodejs
-    corepack
+    # corepack
     # Add AppImage dependencies
     xdg-utils
     fuse
@@ -14,6 +13,9 @@ pkgs.mkShell {
     # rust tools
     rustup
     cargo
+    # node stuff
+    nodejs_22
+    corepack_22
     typeshare
   ];
   nativeBuildInputs =
