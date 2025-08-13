@@ -65,23 +65,32 @@ jobs:
           releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}
+
       - name: Package Linux binary
         if: startsWith(matrix.platform, 'ubuntu-22.04')
         id: package-linux
+        shell: bash
         run: |
-          ARCH='$(uname -m)'
-          if [ '$ARCH' = 'aarch64' ]; then
-            SUFFIX='arm64'
+          set -euo pipefail
+      
+          ARCH="$(uname -m)"
+          if [ "$ARCH" = "aarch64" ]; then
+            SUFFIX="arm64"
           else
-            SUFFIX='amd64'
+            SUFFIX="amd64"
           fi
-          BIN_NAME='agent_runner_${RELEASE_VERSION}_${SUFFIX}'
-          TAR_NAME=${BIN_NAME}.tar.gz
+      
+          BIN_NAME="agent_runner_${RELEASE_VERSION}_${SUFFIX}"
+          TAR_NAME="${BIN_NAME}.tar.gz"
+      
+          # Ensure the compiled binary exists; adjust the path if you build elsewhere
+          test -x ./src-tauri/target/release/agent_runner
+      
+          cp ./src-tauri/target/release/agent_runner "$BIN_NAME"
+          tar -czf "$TAR_NAME" "$BIN_NAME"
+      
+          echo "file=$TAR_NAME" >> "$GITHUB_OUTPUT"
 
-          cp ./src-tauri/target/release/agent_runner $BIN_NAME
-          tar -czf $TAR_NAME $BIN_NAME
-
-          echo 'file=${TAR_NAME}' >> $GITHUB_OUTPUT
       - name: Upload Linux binary to GitHub release
         if: startsWith(matrix.platform, 'ubuntu-22.04')
         uses: softprops/action-gh-release@v1

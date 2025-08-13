@@ -23,6 +23,8 @@ plugins:
       - file: "charts/derolas-ui/Chart.yaml"
         type: text/yaml
         path: appVersion
+      - file: "src-tauri/Cargo.toml"
+        type: text/toml
 
 hooks:
   after:bump: "sed -i \"s/'/\\\"/g\" charts/derolas-ui/Chart.yaml"
