@@ -25,7 +25,7 @@ plugins:
         path: appVersion
 
       - file: "src-tauri/Cargo.toml"
-        type: application/toml
+        type: toml
         path: package.version
 
 
