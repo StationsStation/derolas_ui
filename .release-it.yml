@@ -25,4 +25,4 @@ plugins:
         path: appVersion
 
 hooks:
-  after:bump: "sed -i \"s/'/\\\"/g\" .github/workflows/publish.yaml charts/derolas-ui/Chart.yaml"
+  after:bump: "sed -i \"s/'/\\\"/g\" charts/derolas-ui/Chart.yaml"
