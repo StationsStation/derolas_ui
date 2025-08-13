@@ -12,6 +12,7 @@
 *private_key*
 keys.json
 
+src-tauri
 
 node_modules
 /build
@@ -23,9 +24,11 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .*
-!.gitignore
-!.github
-!.dockerignore
+.gitignore
+.github
+.git
+.dockerignore
+
 
 __pycache__
 /target
