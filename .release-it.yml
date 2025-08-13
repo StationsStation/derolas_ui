@@ -14,9 +14,12 @@ npm:
 plugins:
   "@release-it/bumper":
     out:
-      - file: ".github/workflows/release.yaml"
+      - file: ".github/workflows/publish.yaml"
         type: text/yaml
         path: jobs.build-docker.env.RELEASE_VERSION
+      - file: ".github/workflows/publish.yaml"
+        type: text/yaml
+        path: jobs.publish-tauri.env.RELEASE_VERSION
       - file: "charts/derolas-ui/Chart.yaml"
         type: text/yaml
         path: appVersion
