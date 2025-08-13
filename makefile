@@ -20,3 +20,6 @@ lint:
 	nix-shell tauri-shell.nix --command 'yarn run check'
 
 all: types lint build
+
+release:
+	nix-shell tauri-shell.nix --command 'yarn run release'
