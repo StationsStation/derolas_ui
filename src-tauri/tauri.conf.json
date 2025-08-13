@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "agent_runner",
-  "version": "0.1.25",
+  "version": "0.1.38",
   "identifier": "agent-runner",
   "build": {
     "beforeDevCommand": "npm run dev",
@@ -18,14 +18,19 @@
       }
     ],
     "security": {
-        "dangerousDisableAssetCspModification": false,
-        "csp": "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
-
+      "dangerousDisableAssetCspModification": false,
+      "csp": "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
     }
   },
   "bundle": {
     "active": true,
-    "targets": ["deb", "nsis", "msi", "app", "dmg"],
+    "targets": [
+      "deb",
+      "nsis",
+      "msi",
+      "app",
+      "dmg"
+    ],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
