@@ -22,13 +22,10 @@ node_modules
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.*
 !.gitignore
 !.github
 !.dockerignore
 
 __pycache__
 /target
-
-src-tauri/agent_client/.openapi-generator
-src-tauri/agent_client/.openapi-generator-ignore
-src-tauri/agent_client/.travis.yml

@@ -1,6 +1,6 @@
 {
   "name": "agent_runner",
-  "version": "0.1.0",
+  "version": "0.1.25",
   "description": "",
   "type": "module",
   "scripts": {

@@ -1,0 +1,25 @@
+github:
+  release: true
+  autoGenerate: true
+
+git:
+  commit: true
+  tag: true
+  push: true
+  tagName: "v${version}"
+
+npm:
+  publish: false
+
+plugins:
+  "@release-it/bumper":
+    out:
+      - file: ".github/workflows/release.yaml"
+        type: text/yaml
+        path: jobs.build-docker.env.RELEASE_VERSION
+      - file: "charts/derolas-ui/Chart.yaml"
+        type: text/yaml
+        path: appVersion
+
+hooks:
+  after:bump: "sed -i \"s/'/\\\"/g\" .github/workflows/publish.yaml charts/derolas-ui/Chart.yaml"
