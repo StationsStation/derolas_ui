@@ -23,10 +23,9 @@ plugins:
       - file: "charts/derolas-ui/Chart.yaml"
         type: text/yaml
         path: appVersion
-
-      - file: "src-tauri/Cargo.toml"
-        type: "text/plain"
-        path: package.version
+      - file: "src-tauri/tauri.conf.json"
+        type: "application/json"
+        path: version
 
 
 hooks:
