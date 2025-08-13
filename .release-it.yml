@@ -24,7 +24,7 @@ plugins:
         type: text/yaml
         path: appVersion
       - file: "src-tauri/Cargo.toml"
-        type: "application/toml"
+        type: "text/toml"
         path: package.version
       - file: "src-tauri/tauri.conf.json"
         type: "application/json"
