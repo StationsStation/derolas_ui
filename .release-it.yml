@@ -31,4 +31,3 @@ plugins:
 
 hooks:
   after:bump: "sed -i \"s/'/\\\"/g\" charts/derolas-ui/Chart.yaml"
-  before:init: "cargo set-version ${version} --manifest-path src-tauri/Cargo.toml"
