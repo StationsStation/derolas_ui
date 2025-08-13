@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: ${{ env.RELEASE_VERSION }}
-          releaseName: App v__VERSION__
+          releaseName: Release __VERSION__
           releaseBody: See the assets to download this version and install.
           releaseDraft: false
           prerelease: false

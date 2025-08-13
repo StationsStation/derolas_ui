@@ -16,15 +16,18 @@ plugins:
     out:
       - file: ".github/workflows/publish.yaml"
         type: text/yaml
-        path: jobs.build-docker.env.RELEASE_VERSION
-      - file: ".github/workflows/publish.yaml"
-        type: text/yaml
-        path: jobs.publish-tauri.env.RELEASE_VERSION
+        path: 
+        - jobs.build-docker.env.RELEASE_VERSION
+        - jobs.publish-tauri.env.RELEASE_VERSION
+
       - file: "charts/derolas-ui/Chart.yaml"
         type: text/yaml
         path: appVersion
+
       - file: "src-tauri/Cargo.toml"
         type: text/toml
+        path: package.version
+
 
 hooks:
   after:bump: "sed -i \"s/'/\\\"/g\" charts/derolas-ui/Chart.yaml"

@@ -1,5 +1,5 @@
 # 1. Build Stage
-FROM node:20-slim AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
@@ -21,7 +21,7 @@ COPY . .
 RUN yarn build
 
 # 2. Production Stage
-FROM node:20-slim AS runner
+FROM node:22-alpine AS runner
 
 WORKDIR /app
 
