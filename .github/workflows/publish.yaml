@@ -27,7 +27,7 @@ jobs:
             args: ''
     runs-on: ${{ matrix.platform }}
     env:
-      RELEASE_VERSION: 0.1.30
+      RELEASE_VERSION: 0.1.31
     steps:
       - uses: actions/checkout@v4
       - name: install dependencies (ubuntu only)
