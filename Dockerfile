@@ -1,20 +1,41 @@
-# Build stage
-FROM node:22-alpine AS build
+# 1. Build Stage
+FROM node:20-slim AS builder
+
 WORKDIR /app
 
-# Copy only what's needed to install and build
-COPY package.json yarn.lock ./
-COPY svelte.config.js vite.config.js postcss.config.js tailwind.config.ts tsconfig.json ./
-COPY src ./src
-COPY static ./static
+# Install system dependencies (minimal)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
 
-RUN yarn install --frozen-lockfile
+# Copy only package files first
+COPY package.json yarn.lock ./
+
+# Install dependencies
+RUN yarn install
+
+# Copy the rest of the app
+COPY . .
+
+# Build the app
 RUN yarn build
 
-# Serve stage
-FROM nginxinc/nginx-unprivileged:1.29.0-alpine-perl
-COPY --from=build /app/build /usr/share/nginx/html 
-# Or /app/dist if that's your build output
+# 2. Production Stage
+FROM node:20-slim AS runner
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+WORKDIR /app
+
+# Install a tiny static server
+RUN yarn global add serve
+
+# Copy build output
+COPY --from=builder /app/build ./build
+
+# Expose port
+EXPOSE 3000
+
+# Serve the app
+CMD ["serve", "-s", "build", "-l", "3000"]
+
+
+
