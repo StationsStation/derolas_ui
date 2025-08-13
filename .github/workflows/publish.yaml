@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: install dependencies (ubuntu only)
-        if: startsWith(matrix.platform, "ubuntu-22.04")
+        if: startsWith(matrix.platform, 'ubuntu-22.04')
         run: >
           sudo apt-get update
 
@@ -66,24 +66,24 @@ jobs:
           prerelease: false
           args: ${{ matrix.args }}
       - name: Package Linux binary
-        if: startsWith(matrix.platform, "ubuntu-22.04")
+        if: startsWith(matrix.platform, 'ubuntu-22.04')
         id: package-linux
         run: |
-          ARCH="$(uname -m)"
-          if [ "$ARCH" = "aarch64" ]; then
-            SUFFIX="arm64"
+          ARCH='$(uname -m)'
+          if [ '$ARCH' = 'aarch64' ]; then
+            SUFFIX='arm64'
           else
-            SUFFIX="amd64"
+            SUFFIX='amd64'
           fi
-          BIN_NAME="agent_runner_${RELEASE_VERSION}_${SUFFIX}"
+          BIN_NAME='agent_runner_${RELEASE_VERSION}_${SUFFIX}'
           TAR_NAME=${BIN_NAME}.tar.gz
 
           cp ./src-tauri/target/release/agent_runner $BIN_NAME
           tar -czf $TAR_NAME $BIN_NAME
 
-          echo "file=${TAR_NAME}" >> $GITHUB_OUTPUT
+          echo 'file=${TAR_NAME}' >> $GITHUB_OUTPUT
       - name: Upload Linux binary to GitHub release
-        if: startsWith(matrix.platform, "ubuntu-22.04")
+        if: startsWith(matrix.platform, 'ubuntu-22.04')
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.RELEASE_VERSION }}
